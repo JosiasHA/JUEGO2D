@@ -10,16 +10,27 @@ public class NewBehaviourScript : MonoBehaviour
     bool isGrounded = false;
     Rigidbody2D rb;
     [SerializeField] LayerMask groundLayer; 
+    SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (horizontalInput > 0)
+        {
+            sprite.flipX = false; 
+        }
+        if (horizontalInput < 0)
+        {
+            sprite.flipX = true;
+        }
 
         // Controles de personaje
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
