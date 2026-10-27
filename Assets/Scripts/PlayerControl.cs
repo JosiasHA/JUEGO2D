@@ -39,11 +39,14 @@ public class NewBehaviourScript : MonoBehaviour
 
     private bool saltandoDePared;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -89,6 +92,28 @@ public class NewBehaviourScript : MonoBehaviour
             deslizando = false;
         }
 
+        //activar y desactivar animacion de correr
+        if (horizontalInput != 0)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            anim.SetBool("Crouch", true);
+        }
+        else
+        {
+            anim.SetBool("Crouch", false);
+        }
+
+        anim.SetFloat("Y", rb.velocity.y);
+        if (isGrounded) 
+            anim.SetFloat("Y", 0); 
 
 
         // Almacenando el colisionador en una variable separada para facilitar su uso
