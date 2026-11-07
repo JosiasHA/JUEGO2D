@@ -101,7 +101,8 @@ public class NewBehaviourScript : MonoBehaviour
         {
             anim.SetBool("Run", false);
         }
-
+        
+        //activar y desactivar la animacion de agacharse
         if (Input.GetKey(KeyCode.S))
         {
             anim.SetBool("Crouch", true);
